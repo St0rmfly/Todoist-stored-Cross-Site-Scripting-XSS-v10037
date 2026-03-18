@@ -32,27 +32,35 @@ Open browser Developer Tools (F12)
 
 **Step 2: Prepare the Payload**
 Create a malicious JavaScript payload. For demonstration purposes, we use a simple alert:
-```javascript
+javascript
 <script>alert('XSS BY Jessy');</script>
 
 **Step 3: Intercept the Upload Request**
 
 Using Burp Suite or browser DevTools, intercept a file upload request:
-<img width="782" height="379" alt="1" src="https://github.com/user-attachments/assets/09472779-dd80-4a62-9c52-20cf8fb26daa" />
+<img width="782" height="379" alt="1" src="https://github.com/user-attachments/assets/53d47443-b6b2-4406-8789-c8da5dd81a91" />
+
 
 **Step 4: Inject the Payload**
 
+<img width="785" height="375" alt="2" src="https://github.com/user-attachments/assets/549adede-b951-4155-a295-25e74a04e2a7" />
+
 Modify the request parameters to include your XSS payload. The injection point is in the task description or file metadata field:
 
-<img width="785" height="375" alt="2" src="https://github.com/user-attachments/assets/58b6d9fe-de12-4fa5-a71e-0e92e96bcc3e" />
 
-Step 5: Verify the Stored Payload
+
+**Step 5: Verify the Stored Payload**
+
+<img width="947" height="506" alt="3" src="https://github.com/user-attachments/assets/137b132c-719f-4d7a-9f6f-29d33d125fd1" />
 
 After uploading, navigate to the task or project containing your payload. The malicious script is now stored on Todoist's servers.
 
-<img width="947" height="506" alt="3" src="https://github.com/user-attachments/assets/973f391d-6191-4f82-b416-96495ade10f1" />
 
-Step 6: Trigger the XSS
+
+**Step 6: Trigger the XSS**
+
+<img width="949" height="509" alt="4" src="https://github.com/user-attachments/assets/6e352e02-f110-44cb-8f06-f6d8d6d052dc" />
+
 
 When any user (including yourself) views the affected content:
 
@@ -70,16 +78,18 @@ When any user (including yourself) views the affected content:
 
         Perform actions on behalf of the user
 
-<img width="949" height="509" alt="4" src="https://github.com/user-attachments/assets/4edb974c-276a-4ba1-a3b9-d99bc97f53b5" />
 
-Step 7: Confirmation
+**Step 7: Confirmation**
+
+<img width="944" height="472" alt="5" src="https://github.com/user-attachments/assets/6f3b040c-617a-4852-8917-ecc8a878e275" />
+
 
 The payload successfully executes, confirmed by the popup from d1ysz50cxb9zwl.cloudfront.net, which is Todoist's CDN domain.
 
-<img width="944" height="472" alt="5" src="https://github.com/user-attachments/assets/7f36bf4c-1ad8-418f-b253-81a8d1d086be" />
 
 
-Mitigation Recommendations
+
+*Mitigation Recommendations*
 For Todoist Development Team
 
     Input Validation
@@ -107,4 +117,5 @@ For Todoist Development Team
         Use established libraries like DOMPurify for HTML sanitization
 
         Remove or neutralize script tags and event handlers
+
 
